@@ -1,6 +1,5 @@
 import React, { Component, PropTypes } from 'react';
 import ReactDOM from 'react-dom';
-import Nav from '../components/Nav/Nav.jsx';
 
 // 引入 connect 工具函数
 import { connect } from 'dva';
@@ -55,8 +54,3 @@ function mapStateToProps({ users }) {
 
 // 建立数据关联关系
 export default connect(mapStateToProps)(Users);
-
-ReactDOM.render(
-  <Nav />,
-  document.getElementById('nav')
-);
