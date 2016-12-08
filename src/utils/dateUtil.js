@@ -34,7 +34,7 @@ export function formatDateToStr(format, date) {
 }
 
 //当年所有月份的天数
-export function getDaysSizeOfPerMonth(year) {
+export function getDaysSizeOfPerMonth(year, month) {
     let daysSizeOfPerMonth = [];
     if ((year % 4 === 0 && year % 100 !== 0) || year % 400 === 0) {
       daysSizeOfPerMonth = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
@@ -42,20 +42,15 @@ export function getDaysSizeOfPerMonth(year) {
       daysSizeOfPerMonth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
     }
 
-    return daysSizeOfPerMonth;
+    return daysSizeOfPerMonth[month];
 }
 
 //根据日期获取对应的上月日期
 export function getPreciousMonthDate(date) {
   let preciousMonthDate = new Date(date.getFullYear(), date.getMonth() - 1, date.getDate());
   if (preciousMonthDate.getMonth() === date.getMonth()) {
-    let daysSizeOfPerMonth;
-    if (date.getMonth() === 0) {
-      daysSizeOfPerMonth = getDaysSizeOfPerMonth(date.getFullYear() - 1);
-    } else {
-      daysSizeOfPerMonth = getDaysSizeOfPerMonth(date.getFullYear());
-    }
-    preciousMonthDate = new Date(date.getFullYear(), date.getMonth() - 1, daysSizeOfPerMonth[date.getMonth() - 1]);
+    const preciousMonthFirstDate = new Date(date.getFullYear(), date.getMonth() - 1, 1);
+    preciousMonthDate = new Date(date.getFullYear(), date.getMonth() - 1, getDaysSizeOfPerMonth(preciousMonthFirstDate.getFullYear(), preciousMonthFirstDate.getMonth()));
   }
 
   return preciousMonthDate;
@@ -65,14 +60,10 @@ export function getPreciousMonthDate(date) {
 export function getNextMonthDate(date) {
   let nextMonthDate = new Date(date.getFullYear(), date.getMonth() + 1, date.getDate());
   if (nextMonthDate.getMonth() === (date.getMonth() + 2)) {
-    let daysSizeOfPerMonth;
-    if (date.getMonth() === 11) {
-      daysSizeOfPerMonth = getDaysSizeOfPerMonth(date.getFullYear() + 1);
-    } else {
-      daysSizeOfPerMonth = getDaysSizeOfPerMonth(date.getFullYear());
-    }
-    nextMonthDate = new Date(date.getFullYear(), date.getMonth() + 1, daysSizeOfPerMonth[date.getMonth() + 1]);
+   const nextMonthFirstDate = new Date(date.getFullYear(), date.getMonth() + 1, 1);
+    preciousMonthDate = new Date(date.getFullYear(), date.getMonth() - 1, getDaysSizeOfPerMonth(nextMonthFirstDate.getFullYear(), nextMonthFirstDate.getMonth()));
   }
 
   return nextMonthDate;
 }
+

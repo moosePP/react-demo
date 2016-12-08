@@ -1,0 +1,106 @@
+@container-width: 560px;
+@container-height: 556px;
+@title-height: 78px;
+
+.container {
+  width: @container-width;
+  height: @container-height;
+}
+
+.title {
+  width: 100%;
+  height: @title-height;
+  background: #6b6c86;
+}
+
+.title_date_container {
+  text-align: center;
+  color: #fff;
+  font-weight: bold;
+  font-size: 24px;
+  height: 24px;
+  line-height: 24px;
+  padding-top: 12px;
+  margin-bottom: 30px;
+}
+
+.title_date {
+  margin: 0 36px;
+}
+
+.title_day {
+    width: @container-width / 7;
+    display: inline-block;
+    padding-left: 41px;
+    color: #fff;
+    font-size: 16px;
+}
+.content {
+  width: 100%;
+  height: @container-height - @title-height;
+  background: #ebebee;
+  display: flex;
+  flex-flow: row wrap;
+  align-content: flex-start;
+}
+
+.content_day_container {
+  flex: 0 0 @container-width / 7;
+  box-sizing: border-box;
+  height: (@container-height - @title-height) / 6;
+  border: solid #fff;
+  border-width: 0px 1px 1px 0px;
+  display: inline-block;
+  color: #999;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.content_day_common {
+  height: 16px;
+  line-height: 16px;
+  font-size: 16px;
+  color: #666;
+  float: right;
+  text-align: center;
+  margin: 12px 8px 0 0;
+}
+
+.content_day_current_month_before {
+  .content_day_common;
+   color: #666;
+}
+
+.content_day_current_month_after {
+  .content_day_common;
+   color: #333;
+}
+.content_day_precious_month, .content_day_next_month {
+  .content_day_common;
+  color: #999;
+}
+
+.content_day_today {
+  .content_day_common;
+  width: 20px;
+  height: 20px;
+  line-height: 20px;
+  border-radius: 20px;
+  color: #fff;
+  background: #51516e;
+  display: inline-block;
+}
+
+.content_day_info {
+  position: absolute;
+  left: 8px;
+  bottom: 8px;
+}
+
+.meeting_hold_by_me {
+  color: #37BBBB;
+}
+
+.meeting_to_attend {
+  color: #63AFA0;
+}
