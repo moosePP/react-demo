@@ -1,5 +1,4 @@
 //格式化日期
-
 export function formatDateToStr(format, date) {
   var format = arguments[0] || "yyyy-MM-dd hh:mm:ss";
   var date = arguments[1] || new Date();
@@ -33,6 +32,12 @@ export function formatDateToStr(format, date) {
   return format;
 }
 
+//日期字符串转对象
+export function parseDate(dateStr) {
+  dateStr = dateStr.replace(/-/g,"/");
+  return new Date(dateStr);
+}
+
 //当年所有月份的天数
 export function getDaysSizeOfPerMonth(year, month) {
     let daysSizeOfPerMonth = [];
@@ -56,6 +61,10 @@ export function getPreciousMonthDate(date) {
   return preciousMonthDate;
 }
 
+export function getPreciousMonthDateStr(date) {
+  return formatDateToStr(null, getPreciousMonthDate(date));
+}
+
 //根据日期获取对应的下月日期
 export function getNextMonthDate(date) {
   let nextMonthDate = new Date(date.getFullYear(), date.getMonth() + 1, date.getDate());
@@ -67,3 +76,22 @@ export function getNextMonthDate(date) {
   return nextMonthDate;
 }
 
+export function getNextMonthDateStr(date) {
+  return formatDateToStr(null, getNextMonthDate(date));
+}
+
+//获取当月第一天
+export function getMonthBeginDateStr(date) {
+  if ('string' === typeof(date)) {
+    date = parseDate(date);
+  }
+  return formatDateToStr('yyyy-MM-dd', new Date(date.getFullYear(), date.getMonth(), 1));
+}
+
+//获取当月第一天
+export function getMonthEndDateStr(date) {
+  if ('string' === typeof(date)) {
+    date = parseDate(date);
+  }
+  return formatDateToStr('yyyy-MM-dd', new Date(date.getFullYear(), date.getMonth() + 1, 0));
+}

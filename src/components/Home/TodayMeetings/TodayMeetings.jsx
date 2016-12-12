@@ -12,7 +12,6 @@ class TodayMeetings extends React.Component {
   }
 
   render() {
-    console.log(this.props.data);
     const hasRecord = (this.props.data.length !== 0);
 
     if (hasRecord) {
